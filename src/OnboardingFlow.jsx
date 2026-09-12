@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import Dashboard from './Dashboard.jsx'
 
 const roles = [
   { name: 'Business Owner', icon: '↗', caption: 'Grow my own business' },
@@ -458,23 +459,6 @@ function ProgressRail({ step, role }) {
   )
 }
 
-function DashboardPreview({ data, onNavigate, onRestart }) {
-  return (
-    <main className="ob-dashboard-preview">
-      <AmbientBackground />
-      <nav><Wordmark onHome={() => onNavigate('home')} /><div><span className="ob-live-dot" /> Demo workspace</div><button type="button" onClick={() => onNavigate('home')}>Exit demo</button></nav>
-      <section className="ob-dashboard-message ob-glass">
-        <span className="ob-mini-index">ONBOARDING COMPLETE</span>
-        <div className="ob-success-mark"><CheckIcon /></div>
-        <h1>Your workspace<br /><em>is ready.</em></h1>
-        <p>Nice work, {data.name.split(' ')[0] || 'there'}. The dashboard and internal tools are the next chapter—your onboarding data is ready for them.</p>
-        <div className="ob-dashboard-pills"><span>✦ {data.goals.length || 0} goals</span><span>◎ {data.connected.length} connections</span><span>↗ Brand ready</span></div>
-        <div className="ob-dashboard-actions"><button className="ob-primary" type="button" onClick={onRestart}><span>Replay onboarding</span><i><ArrowIcon /></i></button><button type="button" onClick={() => onNavigate('home')}>Back to website</button></div>
-      </section>
-    </main>
-  )
-}
-
 function OnboardingFlow({ initialView, onNavigate }) {
   const [account, setAccount] = useState({ name: 'Alex Morgan', email: 'demo@adcraft.ai', password: 'demo1234' })
   const [data, setData] = useState({
@@ -508,7 +492,7 @@ function OnboardingFlow({ initialView, onNavigate }) {
   }
 
   if (initialView === 'dashboard') {
-    return <DashboardPreview data={data} onNavigate={onNavigate} onRestart={() => { setStep(1); onNavigate('onboarding') }} />
+    return <Dashboard data={data} onNavigate={onNavigate} />
   }
 
   const next = () => {
