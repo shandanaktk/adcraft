@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import OnboardingFlow from './OnboardingFlow.jsx'
 
 const features = [
   {
@@ -176,7 +177,7 @@ function SocialFrame({ platform, variant, handle, className = '', format = 'post
   )
 }
 
-function Nav() {
+function Nav({ onStart }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -194,7 +195,7 @@ function Nav() {
           <button className="menu-dot" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label="Toggle navigation">
             <span /><span /><span /><span /><span /><span />
           </button>
-          <a className="pill pill-light nav-cta" href="#start">Start free <Arrow /></a>
+          <a className="pill pill-light nav-cta" href="?view=signup" onClick={onStart}>Start free <Arrow /></a>
         </div>
       </header>
       <nav className={`menu-drawer ${open ? 'is-open' : ''}`} aria-hidden={!open}>
@@ -211,7 +212,7 @@ function Nav() {
   )
 }
 
-function Hero() {
+function Hero({ onStart }) {
   return (
     <section className="hero" id="top">
       <div className="hero-color-field" aria-hidden="true">
@@ -226,11 +227,12 @@ function Hero() {
           <span className="line"><span className="reveal-line">a whole <em>marketing team.</em></span></span>
           <span className="line muted"><span className="reveal-line">Without the team.</span></span>
         </h1>
-        {/* <div className="hero-bottom" data-reveal>
+        <div className="hero-bottom" data-reveal>
           <div className="hero-buttons">
+            <a className="pill hero-start-button" href="?view=signup" onClick={onStart}>Get started now <Arrow /></a>
             <a className="text-link" href="#how"><span className="play">▶</span> Watch how it works</a>
           </div>
-        </div> */}
+        </div>
       </div>
 
       <div className="hero-gallery" aria-label="Social campaign previews">
@@ -420,7 +422,7 @@ function Testimonials() {
   )
 }
 
-function FinalCTA() {
+function FinalCTA({ onStart }) {
   return (
     <section className="final-cta section-ink" id="start">
       <div className="cta-glow" />
@@ -429,7 +431,7 @@ function FinalCTA() {
         <h2 data-reveal>One click<br /><em>away.</em></h2>
         <div className="cta-bottom" data-reveal>
           <p>Let Adcraft build it, launch it, and run it—while you focus on everything else.</p>
-          <a className="giant-button" href="mailto:hello@adcraft.app?subject=Start%20with%20Adcraft">
+          <a className="giant-button" href="?view=signup" onClick={onStart}>
             <span>Get started free</span><i><Arrow /></i>
           </a>
         </div>
@@ -451,7 +453,7 @@ function Footer() {
   )
 }
 
-function App() {
+function LandingPage({ onStart }) {
   useEffect(() => {
     const revealItems = document.querySelectorAll('[data-reveal]')
     const observer = new IntersectionObserver(
@@ -493,9 +495,9 @@ function App() {
 
   return (
     <div className="app">
-      <Nav />
+      <Nav onStart={onStart} />
       <main>
-        <Hero />
+        <Hero onStart={onStart} />
         <TrustBar />
         <ProblemSolution />
         <Features />
@@ -503,11 +505,44 @@ function App() {
         <HowItWorks />
         <Reasons />
         <Testimonials />
-        <FinalCTA />
+        <FinalCTA onStart={onStart} />
       </main>
       <Footer />
     </div>
   )
+}
+
+function getView() {
+  const view = new URLSearchParams(window.location.search).get('view')
+  return ['signin', 'signup', 'onboarding', 'dashboard'].includes(view) ? view : 'home'
+}
+
+function App() {
+  const [view, setView] = useState(getView)
+
+  useEffect(() => {
+    const handlePopState = () => setView(getView())
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  const navigate = (nextView) => {
+    const url = nextView === 'home' ? window.location.pathname : `${window.location.pathname}?view=${nextView}`
+    window.history.pushState({}, '', url)
+    window.scrollTo({ top: 0, behavior: 'instant' })
+    setView(nextView)
+  }
+
+  if (view !== 'home') {
+    return <OnboardingFlow initialView={view} onNavigate={navigate} />
+  }
+
+  const handleStart = (event) => {
+    event.preventDefault()
+    navigate('signup')
+  }
+
+  return <LandingPage onStart={handleStart} />
 }
 
 export default App
