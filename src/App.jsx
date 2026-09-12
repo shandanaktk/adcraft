@@ -226,11 +226,11 @@ function Hero() {
           <span className="line"><span className="reveal-line">a whole <em>marketing team.</em></span></span>
           <span className="line muted"><span className="reveal-line">Without the team.</span></span>
         </h1>
-        <div className="hero-bottom" data-reveal>
+        {/* <div className="hero-bottom" data-reveal>
           <div className="hero-buttons">
             <a className="text-link" href="#how"><span className="play">▶</span> Watch how it works</a>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="hero-gallery" aria-label="Social campaign previews">
@@ -332,6 +332,11 @@ function SocialShowcase() {
         <p>Adcraft creates ready-to-post content for every channel, so your organic presence stays as strong as your paid one.</p>
       </div>
       <div className="social-stage shell">
+        <div className="stage-color-field" aria-hidden="true">
+          <span className="stage-orb stage-orb-blue" />
+          <span className="stage-orb stage-orb-pink" />
+          <span className="stage-orb stage-orb-lime" />
+        </div>
         <div className="stage-copy">
           <p className="stage-index">04 / 06</p>
           <h3>One idea.<br />Every feed.</h3>
