@@ -3138,3 +3138,759 @@ svg {
   .ob-dashboard-message { padding: 42px 21px; border-radius: 25px; }
   .ob-dashboard-actions { flex-direction: column; }
 }
+
+/* Viewport-fit refinement: every auth and onboarding screen stays above the fold */
+.ob-onboarding-page,
+.ob-auth-page {
+  height: 100svh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.ob-onboarding-nav {
+  height: 88px;
+  padding-block: 20px;
+}
+
+.ob-progress-rail {
+  width: min(38vw, 460px);
+  gap: 9px 18px;
+}
+
+.ob-progress-count {
+  font-size: 10px;
+}
+
+.ob-progress-count span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ob-progress-bars > span {
+  height: 4px;
+}
+
+.ob-progress-rail p {
+  margin-top: -2px;
+  font-size: 8px;
+}
+
+.ob-save-exit {
+  font-size: 10px;
+}
+
+.ob-onboarding-wrap {
+  height: calc(100svh - 88px);
+  min-height: 0;
+  grid-template-columns: 230px minmax(0, 980px);
+  align-items: center;
+  padding-block: 12px 24px;
+}
+
+.ob-side-note {
+  align-self: center;
+  padding-bottom: 0;
+}
+
+.ob-side-note > span {
+  font-size: 8px;
+}
+
+.ob-side-note > p {
+  font-size: 27px;
+}
+
+.ob-side-note > div small {
+  font-size: 9px;
+}
+
+.ob-flow-card {
+  height: min(720px, 100%);
+  min-height: 0;
+}
+
+.ob-step {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  padding: clamp(27px, 3.4vw, 46px) clamp(30px, 4.6vw, 58px) 23px;
+  overflow: hidden;
+}
+
+.ob-screen-kicker {
+  font-size: 11px;
+}
+
+.ob-screen-kicker span {
+  width: 29px;
+  height: 29px;
+  font-size: 8px;
+}
+
+.ob-screen-heading h1 {
+  margin: 18px 0 9px;
+  font-size: clamp(45px, 4.6vw, 64px);
+}
+
+.ob-screen-heading > p {
+  font-size: 13px;
+}
+
+.ob-field-label,
+.ob-choice-set legend {
+  font-size: 11px;
+}
+
+.ob-field-label small {
+  font-size: 8px;
+}
+
+.ob-field > input,
+.ob-password-wrap input,
+.ob-select-wrap select,
+.ob-url-wrap input,
+.ob-own-voice,
+.ob-invite-input input {
+  height: 48px;
+  font-size: 13px;
+}
+
+.ob-two-fields {
+  margin-top: 23px;
+}
+
+.ob-inline-divider {
+  margin: 14px 0 11px;
+  font-size: 9px;
+}
+
+.ob-social-row.compact button {
+  height: 44px;
+  font-size: 12px;
+}
+
+.ob-choice-set {
+  margin-top: 18px;
+}
+
+.ob-choice-set legend {
+  margin-bottom: 10px;
+}
+
+.ob-choice-card {
+  min-height: 62px;
+  padding: 8px 13px;
+}
+
+.ob-choice-card > i {
+  width: 34px;
+  height: 34px;
+}
+
+.ob-choice-card b {
+  font-size: 11px;
+}
+
+.ob-choice-card small {
+  font-size: 8px;
+}
+
+.ob-form-actions {
+  flex: 0 0 auto;
+  margin-top: auto;
+  padding-top: 15px;
+}
+
+.ob-back,
+.ob-skip {
+  font-size: 10px;
+}
+
+.ob-primary {
+  height: 50px;
+  font-size: 12px;
+}
+
+.ob-primary i {
+  width: 36px;
+  height: 36px;
+}
+
+.ob-business-fields,
+.ob-goal-grid,
+.ob-brand-layout,
+.ob-connect-list,
+.ob-workspace-fields {
+  margin-top: 22px;
+}
+
+.ob-business-fields {
+  gap: 13px;
+}
+
+.ob-smart-note {
+  padding-block: 10px;
+}
+
+.ob-smart-note p,
+.ob-smart-note b,
+.ob-ai-note p,
+.ob-security-note p {
+  font-size: 9px;
+}
+
+.ob-goal-card {
+  min-height: 116px;
+  padding: 15px;
+}
+
+.ob-goal-emoji {
+  font-size: 24px;
+}
+
+.ob-goal-card > b {
+  font-size: 17px;
+}
+
+.ob-goal-card > small,
+.ob-selection-count {
+  font-size: 8px;
+}
+
+.ob-brand-layout {
+  gap: 23px;
+}
+
+.ob-brand-left {
+  padding-right: 23px;
+}
+
+.ob-upload {
+  min-height: 72px;
+}
+
+.ob-upload > span,
+.ob-upload > img {
+  width: 48px;
+  height: 48px;
+}
+
+.ob-upload b,
+.ob-connect-card h3,
+.ob-workspace-preview b {
+  font-size: 11px;
+}
+
+.ob-upload small,
+.ob-connect-card p,
+.ob-workspace-preview em {
+  font-size: 8px;
+}
+
+.ob-color-block {
+  margin-top: 18px;
+}
+
+.ob-swatches label > span {
+  height: 37px;
+}
+
+.ob-voice-options button {
+  font-size: 9px;
+}
+
+.ob-own-voice {
+  height: 39px;
+  font-size: 10px;
+}
+
+.ob-brand-right > .ob-field {
+  margin-top: 14px;
+}
+
+.ob-textarea-wrap textarea {
+  height: 76px;
+  font-size: 11px;
+}
+
+.ob-ai-note {
+  margin-top: 9px;
+  padding-block: 9px;
+}
+
+.ob-connect-list {
+  gap: 8px;
+}
+
+.ob-connect-card {
+  min-height: 68px;
+  padding-block: 8px;
+}
+
+.ob-platform-icon {
+  width: 45px;
+  height: 45px;
+}
+
+.ob-connect-card > button {
+  height: 34px;
+  font-size: 9px;
+}
+
+.ob-security-note {
+  margin-top: 9px;
+  padding-block: 9px;
+}
+
+.ob-workspace-fields {
+  gap: 16px;
+}
+
+.ob-workspace-preview {
+  margin-top: 16px;
+}
+
+.ob-add-another,
+.ob-invite-list > span {
+  font-size: 9px;
+}
+
+.ob-complete-step .ob-screen-heading h1 {
+  margin-top: 13px;
+}
+
+.ob-success-mark {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 7px;
+}
+
+.ob-summary-card {
+  margin-top: 16px;
+}
+
+.ob-summary-card li {
+  min-height: 50px;
+}
+
+.ob-summary-card li p span,
+.ob-summary-title small {
+  font-size: 8px;
+}
+
+.ob-summary-card li p b,
+.ob-summary-title b,
+.ob-complete-copy {
+  font-size: 10px;
+}
+
+/* Auth screens use the same fixed viewport composition. */
+.ob-auth-nav {
+  height: 80px;
+  padding-block: 20px;
+}
+
+.ob-auth-layout {
+  height: calc(100svh - 80px);
+  min-height: 0;
+  padding-block: 14px 28px;
+}
+
+.ob-auth-card {
+  max-height: 100%;
+  padding: clamp(27px, 2.5vw, 39px);
+}
+
+.ob-auth-heading h2 {
+  font-size: clamp(38px, 3vw, 50px);
+}
+
+.ob-auth-heading p {
+  margin-bottom: 21px;
+  font-size: 13px;
+}
+
+.ob-auth-form {
+  gap: 12px;
+}
+
+.ob-auth-submit {
+  height: 53px;
+}
+
+.ob-demo-access {
+  font-size: 10px;
+}
+
+.ob-legal {
+  font-size: 8px;
+}
+
+@media (max-width: 1050px) {
+  .ob-onboarding-wrap {
+    width: min(100%, 960px);
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .ob-auth-nav {
+    height: 70px;
+  }
+
+  .ob-auth-layout {
+    display: grid;
+    height: calc(100svh - 70px);
+    grid-template-columns: minmax(0, 1fr);
+    place-items: center;
+    padding: 8px 16px 16px;
+  }
+
+  .ob-auth-story {
+    display: none;
+  }
+
+  .ob-auth-card {
+    width: min(100%, 540px);
+    margin: 0;
+  }
+
+  .ob-onboarding-nav {
+    display: grid;
+    height: 94px;
+    grid-template-columns: 1fr auto;
+    gap: 10px 16px;
+    padding: 15px 18px 11px;
+  }
+
+  .ob-progress-rail {
+    width: 100%;
+    grid-column: 1 / -1;
+    grid-template-columns: auto 1fr;
+    gap: 5px 12px;
+  }
+
+  .ob-progress-rail p {
+    grid-column: 2;
+  }
+
+  .ob-onboarding-wrap {
+    width: 100%;
+    height: calc(100svh - 94px);
+    padding: 7px 10px 11px;
+  }
+
+  .ob-flow-card {
+    width: 100%;
+    height: 100%;
+    border-radius: 23px;
+  }
+
+  .ob-step {
+    padding: 21px 18px 14px;
+  }
+
+  .ob-screen-heading h1 {
+    margin-top: 14px;
+    font-size: clamp(40px, 9.5vw, 55px);
+  }
+
+  .ob-screen-heading > p {
+    font-size: 11px;
+  }
+
+  .ob-two-fields {
+    margin-top: 17px;
+  }
+
+  .ob-business-fields,
+  .ob-goal-grid,
+  .ob-brand-layout,
+  .ob-connect-list,
+  .ob-workspace-fields {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .ob-two-fields,
+  .ob-business-fields,
+  .ob-goal-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ob-business-fields > .ob-field:first-child,
+  .ob-smart-note {
+    grid-column: span 2;
+  }
+
+  .ob-role-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+
+  .ob-choice-card {
+    min-height: 59px;
+    gap: 8px;
+    padding: 7px 8px;
+  }
+
+  .ob-choice-card > i {
+    width: 30px;
+    height: 30px;
+  }
+
+  .ob-choice-card > em {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 15px;
+    height: 15px;
+  }
+
+  .ob-choice-card small {
+    max-width: 95px;
+  }
+
+  .ob-goal-card {
+    min-height: 105px;
+    padding: 12px;
+  }
+
+  .ob-goal-card > b {
+    font-size: 14px;
+  }
+
+  .ob-goal-card > small {
+    line-height: 1.25;
+  }
+
+  .ob-brand-layout {
+    gap: 13px;
+  }
+
+  .ob-brand-left {
+    padding-bottom: 13px;
+  }
+
+  .ob-upload {
+    min-height: 62px;
+  }
+
+  .ob-color-block {
+    margin-top: 12px;
+  }
+
+  .ob-swatches label > span {
+    height: 31px;
+  }
+
+  .ob-voice-options {
+    margin-block: 7px;
+  }
+
+  .ob-brand-right > .ob-field {
+    margin-top: 10px;
+  }
+
+  .ob-ai-note {
+    display: none;
+  }
+
+  .ob-connect-card {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .ob-connect-card > button {
+    width: auto;
+    min-width: 78px;
+    grid-column: auto;
+  }
+
+  .ob-form-actions > div {
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .ob-skip {
+    max-width: 104px;
+    border-bottom: 0;
+    line-height: 1.25;
+    text-align: right;
+  }
+}
+
+@media (max-width: 560px) and (min-height: 761px) {
+  .ob-choice-set {
+    margin-top: 24px;
+  }
+
+  .ob-role-grid {
+    gap: 9px;
+  }
+
+  .ob-choice-card {
+    min-height: 70px;
+    padding-inline: 10px;
+  }
+
+  .ob-choice-card > i {
+    width: 36px;
+    height: 36px;
+  }
+
+  .ob-choice-card b {
+    font-size: 12px;
+  }
+
+  .ob-choice-card small {
+    font-size: 8.5px;
+  }
+
+  .ob-two-fields {
+    margin-top: 22px;
+  }
+
+  .ob-social-row.compact button {
+    height: 48px;
+  }
+}
+
+@media (max-height: 760px) {
+  .ob-onboarding-nav {
+    height: 76px;
+    padding-block: 13px;
+  }
+
+  .ob-onboarding-wrap {
+    height: calc(100svh - 76px);
+    padding-block: 7px 12px;
+  }
+
+  .ob-flow-card {
+    height: 100%;
+  }
+
+  .ob-step {
+    padding-top: 22px;
+  }
+
+  .ob-screen-heading h1 {
+    margin-top: 12px;
+    font-size: clamp(40px, 4vw, 54px);
+  }
+
+  .ob-screen-heading > p {
+    font-size: 11px;
+  }
+
+  .ob-two-fields,
+  .ob-business-fields,
+  .ob-goal-grid,
+  .ob-brand-layout,
+  .ob-connect-list,
+  .ob-workspace-fields {
+    margin-top: 14px;
+  }
+
+  .ob-choice-set {
+    margin-top: 12px;
+  }
+
+  .ob-form-actions {
+    padding-top: 10px;
+  }
+
+  .ob-auth-layout {
+    padding-block: 6px 12px;
+  }
+
+  .ob-auth-card {
+    padding-block: 24px;
+  }
+
+  .ob-legal {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) and (max-height: 760px) {
+  .ob-onboarding-nav {
+    height: 84px;
+    padding-block: 10px 8px;
+  }
+
+  .ob-onboarding-wrap {
+    height: calc(100svh - 84px);
+  }
+
+  .ob-screen-heading h1 {
+    font-size: clamp(36px, 8.8vw, 47px);
+  }
+
+  .ob-screen-kicker {
+    font-size: 9px;
+  }
+
+  .ob-screen-kicker span {
+    width: 25px;
+    height: 25px;
+  }
+
+  .ob-choice-card {
+    min-height: 52px;
+  }
+
+  .ob-goal-card {
+    min-height: 91px;
+  }
+
+  .ob-security-note,
+  .ob-selection-count {
+    display: none;
+  }
+
+  .ob-brand-left {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px 10px;
+    padding-bottom: 9px;
+  }
+
+  .ob-brand-left > .ob-field-label,
+  .ob-brand-left > .ob-upload {
+    grid-column: 1;
+  }
+
+  .ob-brand-left > .ob-upload {
+    min-height: 55px;
+    margin-top: 0;
+  }
+
+  .ob-brand-left > .ob-upload p {
+    display: none;
+  }
+
+  .ob-brand-left > .ob-color-block {
+    grid-row: 1 / 3;
+    grid-column: 2;
+    margin-top: 0;
+  }
+
+  .ob-brand-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .ob-brand-right > .ob-field {
+    margin-top: 0;
+  }
+
+  .ob-textarea-wrap textarea {
+    height: 83px;
+  }
+}
