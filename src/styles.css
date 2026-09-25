@@ -206,24 +206,25 @@ svg {
   left: 50%;
   display: flex;
   align-items: center;
-  width: min(680px, calc(100vw - 500px));
+  width: min(720px, calc(100vw - 500px));
   justify-content: center;
-  gap: 22px;
-  padding: 8px 22px;
-  border: 1px solid rgba(255, 255, 255, .14);
+  gap: 28px;
+  padding: 7px 26px;
+  border: 1px solid rgba(255, 255, 255, .11);
   border-radius: 999px;
-  background: rgba(8, 8, 8, .42);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, .16);
-  backdrop-filter: blur(16px);
+  background: rgba(8, 8, 8, .34);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, .14), inset 0 1px 0 rgba(255, 255, 255, .04);
+  backdrop-filter: blur(20px) saturate(125%);
   transform: translateX(-50%);
 }
 
 .desktop-nav-links a {
-  padding: 12px 8px;
+  padding: 11px 9px;
   border-radius: 999px;
   color: rgba(255, 255, 255, .96);
-  font-size: 16px;
-  font-weight: 650;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -.025em;
   white-space: nowrap;
   transition: color .22s ease, background .22s ease, transform .22s ease;
 }
