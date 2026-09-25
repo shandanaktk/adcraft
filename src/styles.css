@@ -164,8 +164,16 @@ svg {
   justify-content: space-between;
   padding: 26px clamp(28px, 4.2vw, 72px);
   color: #fff;
-  mix-blend-mode: difference;
+  transition: padding .3s ease, background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
   pointer-events: none;
+}
+
+.site-nav.is-scrolled {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  background: rgba(8, 8, 8, .78);
+  backdrop-filter: blur(22px) saturate(130%);
 }
 
 .site-nav > * {
@@ -193,8 +201,41 @@ svg {
   gap: 16px;
 }
 
+.desktop-nav-links {
+  position: absolute;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  width: min(680px, calc(100vw - 500px));
+  justify-content: center;
+  gap: 22px;
+  padding: 8px 22px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  background: rgba(8, 8, 8, .42);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, .16);
+  backdrop-filter: blur(16px);
+  transform: translateX(-50%);
+}
+
+.desktop-nav-links a {
+  padding: 12px 8px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, .96);
+  font-size: 16px;
+  font-weight: 650;
+  white-space: nowrap;
+  transition: color .22s ease, background .22s ease, transform .22s ease;
+}
+
+.desktop-nav-links a:hover {
+  color: #111;
+  background: var(--lime);
+  transform: translateY(-1px);
+}
+
 .menu-dot {
-  display: grid;
+  display: none;
   width: 55px;
   height: 55px;
   cursor: pointer;
@@ -297,10 +338,42 @@ svg {
 .hero {
   --hero-lift: 0px;
   position: relative;
-  min-height: max(1180px, 128vh);
+  min-height: 0;
   color: #fff;
   background: #000;
   overflow: hidden;
+}
+
+.hero-content-stage {
+  position: relative;
+  min-height: max(760px, 100svh);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-media,
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-media {
+  z-index: 0;
+  background: #080808;
+}
+
+.hero-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.86) contrast(1.06);
+}
+
+.hero-video-overlay {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, .76) 0%, rgba(0, 0, 0, .44) 45%, rgba(0, 0, 0, .22) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, .32) 0%, transparent 45%, rgba(0, 0, 0, .74) 100%);
 }
 
 .hero::before {
@@ -382,7 +455,7 @@ svg {
   position: relative;
   z-index: 5;
   display: flex;
-  min-height: min(890px, 93vh);
+  min-height: max(760px, 100svh);
   flex-direction: column;
   justify-content: center;
   padding-top: 145px;
@@ -505,33 +578,34 @@ svg {
 }
 
 .hero-gallery {
-  position: absolute;
+  position: relative;
   z-index: 4;
-  right: 0;
-  bottom: -26px;
-  left: 0;
   display: flex;
-  height: 560px;
+  height: 490px;
   align-items: flex-start;
   justify-content: center;
-  gap: clamp(18px, 2.2vw, 40px);
-  padding-inline: 22px;
+  gap: clamp(12px, 1.2vw, 24px);
+  padding: 90px clamp(20px, 2vw, 38px) 0;
+  background: #000;
+  overflow: hidden;
 }
 
 .hero-card {
   --base-y: 0px;
-  width: clamp(220px, 19.4vw, 330px);
+  width: clamp(140px, 12.2vw, 235px);
   flex: 0 0 auto;
   opacity: 1;
   transform: translateY(calc(var(--base-y) - var(--hero-lift)));
   transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 0.15s linear;
 }
 
-.hero-card-1 { --base-y: 118px; }
+.hero-card-1 { --base-y: 76px; }
 .hero-card-2 { --base-y: 3px; }
-.hero-card-3 { --base-y: 84px; }
-.hero-card-4 { --base-y: 45px; }
+.hero-card-3 { --base-y: 62px; }
+.hero-card-4 { --base-y: 30px; }
 .hero-card-5 { --base-y: 0px; }
+.hero-card-6 { --base-y: 70px; }
+.hero-card-7 { --base-y: 18px; }
 
 /* Social cards */
 .social-frame {
@@ -1180,17 +1254,30 @@ svg {
   display: flex;
   align-items: center;
   flex: 0 0 auto;
-  gap: 28px;
-  padding: 21px 28px;
+  gap: 0;
+  padding: 18px 0;
 }
 
-.ticker-set span {
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ticker-item img {
+  width: clamp(30px, 2.8vw, 46px);
+  height: clamp(30px, 2.8vw, 46px);
+  object-fit: contain;
+}
+
+.ticker-item b {
   font-size: clamp(28px, 3vw, 50px);
   font-weight: 500;
   letter-spacing: -0.06em;
 }
 
-.ticker-set i {
+.ticker-item i {
+  margin: 0 28px;
   color: #555;
   font-size: 18px;
   font-style: normal;
@@ -1997,6 +2084,14 @@ svg {
 
 /* Responsive */
 @media (max-width: 1100px) {
+  .desktop-nav-links {
+    display: none;
+  }
+
+  .menu-dot {
+    display: grid;
+  }
+
   .hero {
     min-height: 1160px;
   }
@@ -2106,7 +2201,11 @@ svg {
   }
 
   .hero {
-    min-height: 1060px;
+    min-height: 0;
+  }
+
+  .hero-content-stage {
+    min-height: 720px;
   }
 
   .hero::before {
@@ -2167,9 +2266,10 @@ svg {
   }
 
   .hero-gallery {
-    bottom: -80px;
-    height: 445px;
+    bottom: auto;
+    height: 500px;
     gap: 14px;
+    padding-top: 70px;
     transform: translateX(-110px);
   }
 
@@ -2425,6 +2525,105 @@ svg {
 
   .footer-bottom {
     flex-direction: column;
+  }
+}
+
+/* Restore the original large card proportions in a seamless left-to-right rail. */
+.app .hero-gallery {
+  --hero-gallery-gap: clamp(20px, 2.2vw, 40px);
+  display: block;
+  width: 100%;
+  height: 610px;
+  padding: 100px 0 0;
+  transform: none;
+  overflow: hidden;
+}
+
+.hero-gallery-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: hero-card-marquee 34s linear infinite;
+}
+
+.hero-gallery-set {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  gap: var(--hero-gallery-gap);
+  padding-right: var(--hero-gallery-gap);
+}
+
+.hero-gallery:hover .hero-gallery-track {
+  animation-play-state: paused;
+}
+
+.app .hero-card {
+  width: clamp(220px, 19.4vw, 330px);
+  transform: none;
+}
+
+@keyframes hero-card-marquee {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+/* Give the problem statement a clear, structured reading order. */
+.app .problem-body {
+  max-width: 1080px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 70px;
+  margin-left: 0;
+}
+
+.app .problem-body p {
+  min-height: 180px;
+  padding: 30px;
+  border: 1px solid rgba(5, 5, 5, .14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .38);
+}
+
+.app .problem-body strong {
+  display: flex;
+  min-height: 86px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  padding: 22px 28px;
+  border-radius: 18px;
+  color: var(--paper-bright);
+  font-size: 28px;
+  background: var(--ink);
+}
+
+@media (max-width: 760px) {
+  .app .hero-gallery {
+    height: 480px;
+    padding-top: 80px;
+  }
+
+  .app .hero-card {
+    width: 205px;
+  }
+
+  .app .problem-body {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 50px;
+  }
+
+  .app .problem-body p {
+    min-height: 0;
+    padding: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-gallery-track {
+    animation: none !important;
+    transform: none;
   }
 }
 
@@ -3892,5 +4091,345 @@ svg {
 
   .ob-textarea-wrap textarea {
     height: 83px;
+  }
+}
+
+/* Readability pass: keep primary copy and UI text comfortably legible. */
+.app .eyebrow {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.app .trust-intro p {
+  max-width: 540px;
+  font-size: 20px;
+  line-height: 1.55;
+}
+
+.app .trust-intro strong span {
+  font-size: 15px;
+}
+
+.app .problem-body p,
+.app .solution-content > p,
+.app .social-heading > p {
+  font-size: clamp(20px, 1.75vw, 27px);
+}
+
+.app .feature-row p,
+.app .step-copy p {
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.app .stage-copy > p:not(.stage-index),
+.app .reason-card p,
+.app .testimonial-top > p,
+.app .cta-bottom > p {
+  font-size: 18px;
+  line-height: 1.58;
+}
+
+.app .feature-number,
+.app .step-number,
+.app .stage-index,
+.app .reason-card > span {
+  font-size: 14px;
+}
+
+.app .feature-title span,
+.app .platform-pills span,
+.app .footer-links,
+.app .footer-bottom,
+.app .quote-person strong,
+.app .quote-person small,
+.app .quote-secondary > span {
+  font-size: 14px;
+}
+
+.app .text-link {
+  font-size: 16px;
+}
+
+.app .social-profile strong,
+.app .social-meta,
+.app .creative-badge {
+  font-size: 12px;
+}
+
+.app .social-profile small,
+.app .tiktok-actions small {
+  font-size: 10px;
+}
+
+/* Larger onboarding type is allowed to scroll instead of being clipped. */
+.ob-onboarding-page,
+.ob-auth-page {
+  height: auto;
+  min-height: 100svh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.ob-onboarding-wrap,
+.ob-auth-layout {
+  height: auto;
+  min-height: calc(100svh - 88px);
+}
+
+.ob-flow-card,
+.ob-step {
+  height: auto;
+}
+
+.ob-flow-card {
+  min-height: min(720px, calc(100svh - 112px));
+}
+
+.ob-step {
+  min-height: inherit;
+  overflow: visible;
+}
+
+.ob-screen-kicker,
+.ob-kicker {
+  font-size: 14px;
+}
+
+.ob-screen-heading > p,
+.ob-auth-heading p {
+  color: rgba(255, 255, 255, .66);
+  font-size: 17px;
+}
+
+.ob-field-label,
+.ob-choice-set legend {
+  font-size: 15px;
+}
+
+.ob-field-label small,
+.ob-choice-card small,
+.ob-goal-card > small,
+.ob-selection-count,
+.ob-upload small,
+.ob-connect-card p,
+.ob-workspace-preview small,
+.ob-workspace-preview em,
+.ob-summary-card li p span,
+.ob-summary-title small,
+.ob-complete-copy,
+.ob-legal {
+  color: rgba(255, 255, 255, .56);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.ob-field > input,
+.ob-password-wrap input,
+.ob-select-wrap select,
+.ob-url-wrap input,
+.ob-own-voice,
+.ob-invite-input input,
+.ob-textarea-wrap textarea {
+  font-size: 16px;
+}
+
+.ob-select-wrap select option {
+  color: #111;
+  background: #fff;
+}
+
+.ob-choice-card b,
+.ob-upload b,
+.ob-connect-card h3,
+.ob-workspace-preview b,
+.ob-summary-card li p b,
+.ob-summary-title b {
+  font-size: 15px;
+}
+
+.ob-smart-note p,
+.ob-smart-note b,
+.ob-ai-note p,
+.ob-security-note p,
+.ob-side-note > div small {
+  color: rgba(255, 255, 255, .62);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.ob-side-note > span,
+.ob-progress-rail p,
+.ob-progress-count,
+.ob-mini-index,
+.ob-divider,
+.ob-inline-divider {
+  font-size: 14px;
+}
+
+.ob-side-note > p {
+  font-size: 32px;
+}
+
+.ob-primary,
+.ob-back,
+.ob-skip,
+.ob-save-exit,
+.ob-connect-card > button,
+.ob-voice-options button,
+.ob-add-another,
+.ob-invite-list > span,
+.ob-dashboard-actions > button:last-child {
+  font-size: 15px;
+}
+
+.ob-dashboard-message > p {
+  color: rgba(255, 255, 255, .66);
+  font-size: 17px;
+}
+
+.ob-dashboard-pills span,
+.ob-dashboard-preview > nav > div,
+.ob-dashboard-preview > nav > button {
+  font-size: 14px;
+}
+
+@media (max-width: 800px) {
+  .ob-onboarding-wrap,
+  .ob-auth-layout {
+    height: auto;
+    min-height: calc(100svh - 84px);
+  }
+
+  .ob-flow-card {
+    height: auto;
+    min-height: calc(100svh - 105px);
+  }
+
+  .ob-screen-heading > p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .ob-two-fields,
+  .ob-business-fields,
+  .ob-goal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ob-business-fields > .ob-field:first-child,
+  .ob-smart-note {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .app .hero-start-button {
+    gap: 14px;
+    padding-inline: 18px;
+  }
+
+  .app .text-link {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
+
+/* Final high-legibility overrides for auth, onboarding, and footer UI. */
+.app .footer-links {
+  gap: 18px;
+  font-size: 18px;
+}
+
+.app .footer-bottom {
+  font-size: 14px;
+}
+
+.ob-auth-nav p {
+  color: rgba(255, 255, 255, .76);
+  font-size: 16px;
+}
+
+.ob-auth-nav p button,
+.ob-social-row button,
+.ob-demo-access,
+.ob-demo-access small,
+.ob-form-error {
+  font-size: 15px;
+}
+
+.ob-auth-proof > div,
+.ob-auth-proof small {
+  font-size: 14px;
+}
+
+.ob-legal {
+  display: block;
+  color: rgba(255, 255, 255, .62);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.ob-complete-copy {
+  color: rgba(255, 255, 255, .66);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ob-choice-card {
+  min-height: 78px;
+}
+
+.ob-goal-card {
+  min-height: 145px;
+}
+
+.ob-connect-card {
+  min-height: 84px;
+}
+
+.ob-screen-kicker span,
+.ob-connect-card h3 small,
+.ob-swatches small,
+.ob-textarea-wrap > small,
+.ob-summary-title em {
+  font-size: 12px;
+}
+
+.ob-preview-card > span,
+.preview-three > small {
+  font-size: 11px;
+}
+
+.ob-progress-count span {
+  font-size: 16px;
+}
+
+.ob-demo-access i {
+  font-size: 10px;
+}
+
+.ob-url-wrap i,
+.ob-invite-input button {
+  font-size: 14px;
+}
+
+.ob-ai-note,
+.ob-security-note {
+  display: flex;
+}
+
+.ob-selection-count {
+  display: block;
+}
+
+@media (max-width: 560px) {
+  .ob-auth-nav p {
+    font-size: 0;
+  }
+
+  .ob-auth-nav p button {
+    font-size: 15px;
   }
 }

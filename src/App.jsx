@@ -56,6 +56,23 @@ const reasons = [
   ['Your time back', 'Spend it on the business—not inside Ads Manager.'],
 ]
 
+const tickerPlatforms = [
+  { name: 'Meta', logo: '/social_logos/meta.png' },
+  { name: 'Instagram', logo: '/social_logos/instagram.png' },
+  { name: 'TikTok', logo: '/social_logos/tiktok.png' },
+  { name: 'Facebook', logo: '/social_logos/facebook.png' },
+]
+
+const heroCards = [
+  { platform: 'Facebook', variant: 'studio', handle: 'Form & Function', badge: 'New' },
+  { platform: 'Instagram', variant: 'skincare', handle: 'Soft Studio', badge: 'Just in' },
+  { platform: 'TikTok', variant: 'food', handle: 'Hot Stuff', format: 'reel', badge: 'Trending' },
+  { platform: 'Instagram', variant: 'pulse', handle: 'Axiom Athletics', badge: 'New drop' },
+  { platform: 'Facebook', variant: 'coffee', handle: 'Rise Coffee', badge: 'Launch' },
+  { platform: 'TikTok', variant: 'studio', handle: 'Quiet Objects', format: 'reel', badge: 'For you' },
+  { platform: 'Instagram', variant: 'food', handle: 'Good Heat', badge: 'New flavor' },
+]
+
 function Arrow({ direction = 'up' }) {
   const rotate = direction === 'down' ? 135 : 0
   return (
@@ -191,6 +208,12 @@ function Nav({ onStart }) {
     <>
       <header className={`site-nav ${scrolled ? 'is-scrolled' : ''}`}>
         <a className="wordmark" href="#top" aria-label="Adcraft home">Adcraft<span>.</span></a>
+        <nav className="desktop-nav-links" aria-label="Primary navigation">
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+          <a href="#social">Social</a>
+          <a href="#results">Results</a>
+        </nav>
         <div className="nav-actions">
           <button className="menu-dot" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label="Toggle navigation">
             <span /><span /><span /><span /><span /><span />
@@ -215,32 +238,48 @@ function Nav({ onStart }) {
 function Hero({ onStart }) {
   return (
     <section className="hero" id="top">
-      <div className="hero-color-field" aria-hidden="true">
-        <span className="color-orb color-orb-blue" />
-        <span className="color-orb color-orb-pink" />
-        <span className="color-orb color-orb-lime" />
-      </div>
-      <div className="hero-copy shell">
-        <div className="eyebrow hero-eyebrow" data-reveal><Spark /> AI-powered campaign management</div>
-        <h1 aria-label="Run Meta ads like you have a whole marketing team. Without the team.">
-          <span className="line"><span className="reveal-line">Run Meta ads like you have</span></span>
-          <span className="line"><span className="reveal-line">a whole <em>marketing team.</em></span></span>
-          <span className="line muted"><span className="reveal-line">Without the team.</span></span>
-        </h1>
-        <div className="hero-bottom" data-reveal>
-          <div className="hero-buttons">
-            <a className="pill hero-start-button" href="?view=signup" onClick={onStart}>Get started now <Arrow /></a>
-            <a className="text-link" href="#how"><span className="play">▶</span> Watch how it works</a>
+      <div className="hero-content-stage">
+        <div className="hero-media" aria-hidden="true">
+          <video autoPlay muted loop playsInline preload="metadata">
+            <source src="/hero/hero.mp4" type="video/mp4" />
+          </video>
+          <span className="hero-video-overlay" />
+        </div>
+        <div className="hero-color-field" aria-hidden="true">
+          <span className="color-orb color-orb-blue" />
+          <span className="color-orb color-orb-pink" />
+          <span className="color-orb color-orb-lime" />
+        </div>
+        <div className="hero-copy shell">
+          <div className="eyebrow hero-eyebrow" data-reveal><Spark /> AI-powered campaign management</div>
+          <h1 aria-label="Run Meta ads like you have a whole marketing team. Without the team.">
+            <span className="line"><span className="reveal-line">Run Meta ads like you have</span></span>
+            <span className="line"><span className="reveal-line">a whole <em>marketing team.</em></span></span>
+            <span className="line muted"><span className="reveal-line">Without the team.</span></span>
+          </h1>
+          <div className="hero-bottom" data-reveal>
+            <div className="hero-buttons">
+              <a className="pill hero-start-button" href="?view=signup" onClick={onStart}>Get started now <Arrow /></a>
+              <a className="text-link" href="#how"><span className="play">▶</span> Watch how it works</a>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="hero-gallery" aria-label="Social campaign previews">
-        <SocialFrame className="hero-card hero-card-1" platform="Facebook" variant="studio" handle="Form & Function" badge="New" />
-        <SocialFrame className="hero-card hero-card-2" platform="Instagram" variant="skincare" handle="Soft Studio" badge="Just in" />
-        <SocialFrame className="hero-card hero-card-3" platform="TikTok" variant="food" handle="Hot Stuff" format="reel" badge="Trending" />
-        <SocialFrame className="hero-card hero-card-4" platform="Instagram" variant="pulse" handle="Axiom Athletics" badge="New drop" />
-        <SocialFrame className="hero-card hero-card-5" platform="Facebook" variant="coffee" handle="Rise Coffee" badge="Launch" />
+        <div className="hero-gallery-track">
+          {[0, 1].map((set) => (
+            <div className="hero-gallery-set" aria-hidden={set === 1} key={set}>
+              {heroCards.map((card, index) => (
+                <SocialFrame
+                  {...card}
+                  className={`hero-card hero-card-${index + 1}`}
+                  key={`${set}-${card.handle}`}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -257,7 +296,13 @@ function TrustBar() {
         <div className="ticker-track">
           {[0, 1].map((set) => (
             <div className="ticker-set" key={set}>
-              <span>Meta</span><i>✦</i><span>Instagram</span><i>✦</i><span>TikTok</span><i>✦</i><span>Facebook</span><i>✦</i>
+              {tickerPlatforms.map((platform) => (
+                <span className="ticker-item" key={`${set}-${platform.name}`}>
+                  <img src={platform.logo} alt="" />
+                  <b>{platform.name}</b>
+                  <i>✦</i>
+                </span>
+              ))}
             </div>
           ))}
         </div>
@@ -474,7 +519,7 @@ function LandingPage({ onStart }) {
       const scroll = window.scrollY
       const hero = document.querySelector('.hero')
       if (hero && scroll < window.innerHeight * 1.7) {
-        hero.style.setProperty('--hero-lift', `${Math.min(scroll * 0.14, 135)}px`)
+        hero.style.setProperty('--hero-lift', `${Math.min(scroll * 0.09, 60)}px`)
       }
       ticking = false
     }
