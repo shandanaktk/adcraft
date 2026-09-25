@@ -90,6 +90,14 @@ function Spark() {
   )
 }
 
+function CloseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 6l12 12M18 6 6 18" />
+    </svg>
+  )
+}
+
 function PlatformIcon({ platform }) {
   if (platform === 'Instagram') {
     return (
@@ -222,7 +230,7 @@ function Nav({ onStart }) {
         </div>
       </header>
       <nav className={`menu-drawer ${open ? 'is-open' : ''}`} aria-hidden={!open}>
-        <button className="menu-close" onClick={() => setOpen(false)} aria-label="Close navigation">×</button>
+        <button className="menu-close" onClick={() => setOpen(false)} aria-label="Close navigation"><CloseIcon /></button>
         <div className="menu-links">
           <a href="#features" onClick={() => setOpen(false)}>Features <span>01</span></a>
           <a href="#how" onClick={() => setOpen(false)}>How it works <span>02</span></a>
@@ -240,8 +248,9 @@ function Hero({ onStart }) {
     <section className="hero" id="top">
       <div className="hero-content-stage">
         <div className="hero-media" aria-hidden="true">
-          <video autoPlay muted loop playsInline preload="metadata">
-            <source src="/hero/hero.mp4" type="video/mp4" />
+          <video autoPlay muted loop playsInline preload="auto" poster="/hero/hero-poster.jpg" disablePictureInPicture>
+            <source media="(max-width: 760px) and (prefers-reduced-motion: no-preference)" src="/hero/hero-mobile.mp4" type="video/mp4" />
+            <source media="(prefers-reduced-motion: no-preference)" src="/hero/hero.mp4" type="video/mp4" />
           </video>
           <span className="hero-video-overlay" />
         </div>

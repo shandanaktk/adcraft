@@ -33,7 +33,7 @@
 .db-sidebar-brand { display: flex; height: 42px; align-items: flex-start; justify-content: space-between; padding: 0 10px; }
 .db-sidebar-brand > button:first-child { padding: 0; border: 0; cursor: pointer; color: #fff; font-family: 'Instrument Serif', Georgia, serif; font-size: 31px; font-style: italic; font-weight: 600; letter-spacing: -.055em; line-height: 1; background: transparent; }
 .db-sidebar-brand > button:first-child span { color: var(--lime); }
-.db-mobile-close { display: none; padding: 6px; border: 0; background: transparent; }
+.db-mobile-close { display: none; width: 34px; height: 34px; flex: 0 0 auto; appearance: none; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; line-height: 0; background: rgba(255,255,255,.035); overflow: hidden; }
 .db-workspace-switch { display: flex; align-items: center; gap: 9px; margin: 18px 0 22px; padding: 9px; border: 1px solid rgba(255,255,255,.08); border-radius: 13px; background: rgba(255,255,255,.045); }
 .db-workspace-switch > span { display: grid; width: 31px; height: 31px; flex: 0 0 auto; place-items: center; border-radius: 9px; color: #10110e; font-family: 'Instrument Serif', serif; font-size: 14px; font-style: italic; font-weight: 700; background: linear-gradient(145deg, #dfff74, #a8cf36); }
 .db-workspace-switch > div { min-width: 0; flex: 1; }
@@ -70,7 +70,7 @@
 
 .db-main-shell { min-height: 100svh; margin-left: var(--db-sidebar); }
 .db-topbar { position: sticky; z-index: 20; top: 0; display: flex; height: 68px; align-items: center; justify-content: space-between; padding: 0 clamp(20px, 3.2vw, 48px); border-bottom: 1px solid var(--db-stroke); background: rgba(8, 9, 8, .7); backdrop-filter: blur(25px); }
-.db-menu-button { display: none; }
+.db-menu-button { display: none; appearance: none; padding: 0; line-height: 0; overflow: hidden; }
 .db-breadcrumb { display: flex; align-items: center; gap: 9px; color: var(--db-copy-faint); font-size: 14px; }
 .db-breadcrumb i { opacity: .5; font-style: normal; }
 .db-breadcrumb b { color: rgba(255,255,255,.8); font-weight: 600; }
@@ -82,7 +82,7 @@
 .db-search kbd { padding: 3px 5px; border: 1px solid rgba(255,255,255,.09); border-radius: 4px; color: rgba(255,255,255,.68); font-size: 14px; background: rgba(255,255,255,.025); }
 .db-demo-badge { display: flex; height: 27px; align-items: center; gap: 6px; padding: 0 9px; border: 1px solid rgba(217,255,87,.13); border-radius: 999px; color: rgba(217,255,87,.75); font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: rgba(217,255,87,.055); }
 .db-demo-badge i { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); }
-.db-icon-button, .db-top-avatar { display: grid; width: 35px; height: 35px; cursor: pointer; place-items: center; border: 1px solid rgba(255,255,255,.08); border-radius: 10px; background: rgba(255,255,255,.035); }
+.db-icon-button, .db-top-avatar { display: grid; width: 35px; height: 35px; flex: 0 0 auto; appearance: none; cursor: pointer; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.08); border-radius: 10px; line-height: 1; text-align: center; background: rgba(255,255,255,.035); overflow: hidden; }
 .db-icon-button { position: relative; color: rgba(255,255,255,.68); }
 .db-icon-button > i { position: absolute; top: 7px; right: 7px; width: 5px; height: 5px; border: 1px solid #101010; border-radius: 50%; background: var(--orange); }
 .db-top-avatar { color: #111; font-size: 14px; font-weight: 800; background: linear-gradient(145deg, #b8c8ff, #6c83e8); }
@@ -432,8 +432,9 @@
   .db-sidebar { width:244px;transform:translateX(-104%);transition:transform .3s cubic-bezier(.22,1,.36,1) }
   .db-sidebar.open { transform:translateX(0) }
   .db-mobile-close,.db-menu-button { display:grid }
+  .db-sidebar-brand { align-items:center }
   .db-nav-scrim { position:fixed;z-index:25;inset:0;display:block;border:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px) }
-  .db-menu-button { width:32px;height:32px;place-items:center;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:var(--db-copy-soft);background:rgba(255,255,255,.035) }
+  .db-menu-button { width:34px;height:34px;flex:0 0 auto;place-items:center;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:var(--db-copy-soft);background:rgba(255,255,255,.035) }
   .db-breadcrumb { margin-right:auto;margin-left:10px }
   .db-overview-grid { grid-template-columns:1fr 1fr }
   .db-launch-card { grid-column:span 2;grid-row:auto }

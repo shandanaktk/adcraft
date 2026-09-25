@@ -236,9 +236,11 @@ svg {
 }
 
 .menu-dot {
+  appearance: none;
   display: none;
   width: 55px;
   height: 55px;
+  flex: 0 0 auto;
   cursor: pointer;
   grid-template-columns: repeat(3, 4px);
   grid-template-rows: repeat(2, 4px);
@@ -249,6 +251,7 @@ svg {
   border-radius: 50%;
   color: #fff;
   background: #202020;
+  overflow: hidden;
   transition: background 0.25s ease, transform 0.25s ease;
 }
 
@@ -289,18 +292,29 @@ svg {
 }
 
 .menu-close {
+  appearance: none;
   position: absolute;
   top: 27px;
   right: 36px;
+  display: grid;
   width: 55px;
   height: 55px;
   cursor: pointer;
+  place-items: center;
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 50%;
-  font-size: 30px;
-  font-weight: 300;
-  line-height: 1;
   background: transparent;
+  overflow: hidden;
+}
+
+.menu-close svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
 }
 
 .menu-links {
@@ -360,10 +374,11 @@ svg {
 
 .hero-media {
   z-index: 0;
-  background: #080808;
+  background: #080808 url('/hero/hero-poster.jpg') center / cover no-repeat;
 }
 
 .hero-media video {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
