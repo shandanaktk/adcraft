@@ -23,6 +23,7 @@
 .db-dashboard *, .db-dashboard *::before, .db-dashboard *::after { box-sizing: border-box; }
 .db-dashboard button, .db-dashboard input, .db-dashboard textarea, .db-dashboard select { font: inherit; }
 .db-dashboard button { color: inherit; }
+.db-dashboard .db-button { color: #111; }
 .db-dashboard h1, .db-dashboard h2, .db-dashboard h3, .db-dashboard p { margin-top: 0; }
 .db-icon { display: block; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
 .db-ambient { position: fixed; z-index: -1; inset: 0; overflow: hidden; pointer-events: none; }
